@@ -19,7 +19,7 @@
     "@semantic-release/changelog": "^1.0.0",
     "@semantic-release/exec": "^1.0.1",
     "@semantic-release/git": "^2.0.1",
-    "@semantic-release/github": "^2.2.3",
+    "@semantic-release/github": "^3.0.0",
     "@semantic-release/npm": "^2.4.0"
   },
   "devDependencies": {
