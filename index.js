@@ -18,10 +18,7 @@ module.exports = {
   publish: [
     '@semantic-release/changelog',
     {path: '@semantic-release/npm', npmPublish: false},
-    {
-      path: '@semantic-release/git',
-      assets: ['package.json'],
-    },
+    {path: '@semantic-release/git', message: `chore(release): \${nextRelease.version} [skip ci]`},
     {path: '@semantic-release/exec', cmd: `apm publish --tag \${nextRelease.gitTag}`},
     '@semantic-release/github',
   ],

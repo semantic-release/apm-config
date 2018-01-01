@@ -104,7 +104,7 @@ test.serial('Initial and minor releases', async t => {
   t.regex(t.context.logs, new RegExp(`Publishing test-release@v${version}`));
   t.regex(t.context.logs, new RegExp(`Published release: 1.0.0`));
   t.is((await readJson('./package.json')).version, version);
-  t.deepEqual(await gitCommitedFiles(), ['package.json']);
+  t.deepEqual(await gitCommitedFiles(), ['CHANGELOG.md', 'package.json']);
   let commit = (await gitGetCommit())[0];
   t.is(commit.subject, `chore(release): ${version} [skip ci]`);
   t.is(commit.gitTags, `(HEAD -> master, tag: v${version})`);
@@ -147,7 +147,7 @@ test.serial('Initial and minor releases', async t => {
   t.regex(t.context.logs, new RegExp(`Publishing test-release@v${version}`));
   t.regex(t.context.logs, new RegExp(`Published release: 1.0.0`));
   t.is((await readJson('./package.json')).version, version);
-  t.deepEqual(await gitCommitedFiles(), ['package.json']);
+  t.deepEqual(await gitCommitedFiles(), ['CHANGELOG.md', 'package.json']);
   commit = (await gitGetCommit())[0];
   t.is(commit.subject, `chore(release): ${version} [skip ci]`);
   t.is(commit.gitTags, `(HEAD -> master, tag: v${version})`);
