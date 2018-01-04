@@ -1,8 +1,10 @@
+import path from 'path';
 import test from 'ava';
-import {writeJson, readJson} from 'fs-extra';
+import {writeJson, readJson, ensureSymlink} from 'fs-extra';
 import {stub} from 'sinon';
 import execa from 'execa';
 import tempy from 'tempy';
+import which from 'which';
 import stripAnsi from 'strip-ansi';
 import semanticRelease from 'semantic-release';
 import {gitCommitedFiles, gitGetCommit} from './helpers/git-utils';
@@ -174,4 +176,31 @@ test.serial('Throw error if "ATOM_ACCESS_TOKEN" is not set', async t => {
 
   t.is(error.name, 'SemanticReleaseError');
   t.is(error.message.trim(), 'The environment variable ATOM_ACCESS_TOKEN is required.');
+});
+
+test.serial('Throw error if "apm" is not installed', async t => {
+  const packageName = 'missing-apm';
+  const branch = 'master';
+  const {repositoryUrl} = await gitbox.createRepo(packageName, branch);
+  process.env.GIT_CREDENTIALS = gitbox.gitCredential;
+  process.env.GH_TOKEN = 'github_token';
+  process.env.GITHUB_URL = mockServer.url;
+  process.env.ATOM_HOME = tempy.directory();
+  process.env.ATOM_API_URL = mockServer.url;
+  process.env.ATOM_RESOURCE_PATH = tempy.directory();
+  // Fake PATH with only git available to make sure apm is not in the PATH
+  const PATH = tempy.directory();
+  await ensureSymlink(which.sync('git'), path.join(PATH, 'git'));
+  process.env.PATH = PATH;
+  delete process.env.ATOM_ACCESS_TOKEN;
+  await writeJson('./package.json', {
+    name: packageName,
+    version: '0.0.0-dev',
+    repository: {url: repositoryUrl},
+  });
+
+  const error = await t.throws(semanticRelease({extends: apmConfig}));
+
+  t.is(error.name, 'SemanticReleaseError');
+  t.is(error.message.trim(), 'The apm CLI must be installed.');
 });

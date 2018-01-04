@@ -1,13 +1,17 @@
+const execa = require('execa');
+const SemanticReleaseError = require('@semantic-release/error');
+
 module.exports = {
   verifyConditions: [
-    {
-      path: '@semantic-release/exec',
-      cmd: 'if ! [ -x "$(command -v apm)" ]; then echo "The apm CLI must be installed."; exit 1; fi',
+    async () => {
+      if ((await execa('apm', ['-v'], {reject: false})).code !== 0) {
+        throw new SemanticReleaseError('The apm CLI must be installed.', 'ENOAPMCLI');
+      }
     },
-    {
-      path: '@semantic-release/exec',
-      cmd:
-        'if [ -z "$ATOM_ACCESS_TOKEN" ]; then echo "The environment variable ATOM_ACCESS_TOKEN is required."; exit 1; fi',
+    () => {
+      if (!process.env.ATOM_ACCESS_TOKEN) {
+        throw new SemanticReleaseError('The environment variable ATOM_ACCESS_TOKEN is required.', 'ENOAPMTOKEN');
+      }
     },
     {path: '@semantic-release/npm', npmPublish: false},
     '@semantic-release/changelog',
