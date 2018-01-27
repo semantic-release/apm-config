@@ -6,6 +6,9 @@
 [![Codecov](https://img.shields.io/codecov/c/github/semantic-release/apm-config.svg)](https://codecov.io/gh/semantic-release/apm-config)
 [![Greenkeeper badge](https://badges.greenkeeper.io/semantic-release/apm-config.svg)](https://greenkeeper.io/)
 
+[![npm latest version](https://img.shields.io/npm/v/@semantic-release/apm-config/latest.svg)](https://www.npmjs.com/package/@semantic-release/apm-config)
+[![npm next version](https://img.shields.io/npm/v/@semantic-release/apm-config/next.svg)](https://www.npmjs.com/package/@semantic-release/apm-config)
+
 ## Usage
 
 ### Local installation
