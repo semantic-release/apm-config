@@ -179,8 +179,7 @@ test.serial('Throw error if "ATOM_ACCESS_TOKEN" is not set', async t => {
 
   const error = await t.throws(semanticRelease({extends: apmConfig}));
 
-  t.is(error.name, 'SemanticReleaseError');
-  t.is(error.message.trim(), 'The environment variable ATOM_ACCESS_TOKEN is required.');
+  t.regex(error.message.trim(), /The environment variable ATOM_ACCESS_TOKEN is required./);
 });
 
 test.serial('Throw error if "apm" is not installed', async t => {
@@ -206,6 +205,5 @@ test.serial('Throw error if "apm" is not installed', async t => {
 
   const error = await t.throws(semanticRelease({extends: apmConfig}));
 
-  t.is(error.name, 'SemanticReleaseError');
-  t.is(error.message.trim(), 'The apm CLI must be installed.');
+  t.regex(error.message.trim(), /The apm CLI must be installed./);
 });
