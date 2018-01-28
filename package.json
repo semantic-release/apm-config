@@ -18,10 +18,10 @@
   "dependencies": {
     "@semantic-release/changelog": "^1.0.0",
     "@semantic-release/error": "^2.1.0",
-    "@semantic-release/exec": "^1.0.1",
-    "@semantic-release/git": "^2.0.1",
-    "@semantic-release/github": "^3.0.0",
-    "@semantic-release/npm": "^2.4.0",
+    "@semantic-release/exec": "^2.0.0",
+    "@semantic-release/git": "^3.0.0",
+    "@semantic-release/github": "^4.0.0",
+    "@semantic-release/npm": "^3.0.0",
     "execa": "^0.9.0"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "nyc": "^11.1.0",
     "p-retry": "^1.0.0",
     "prettier": "~1.10.0",
-    "semantic-release": "^12.4.1",
+    "semantic-release": "^13.0.1",
     "sinon": "^4.1.2",
     "strip-ansi": "^4.0.0",
     "tempy": "^0.2.1",
@@ -78,7 +78,7 @@
     "all": true
   },
   "peerDependencies": {
-    "semantic-release": ">=12.0.0"
+    "semantic-release": ">=13.0.0"
   },
   "prettier": {
     "printWidth": 120,

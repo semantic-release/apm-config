@@ -18,7 +18,6 @@ module.exports = {
     '@semantic-release/git',
     '@semantic-release/github',
   ],
-  getLastRelease: '@semantic-release/git',
   publish: [
     '@semantic-release/changelog',
     {path: '@semantic-release/npm', npmPublish: false},
