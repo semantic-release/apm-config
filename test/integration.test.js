@@ -60,8 +60,7 @@ test.serial('Initial and minor releases', async t => {
   const branch = 'master';
   // Create a remote repo, initialize it, create a local shallow clone and set the cwd to the clone
   const {repositoryUrl} = await gitbox.createRepo(packageName, branch);
-  process.env.GIT_CREDENTIALS = gitbox.gitCredential;
-  process.env.GH_TOKEN = 'github_token';
+  process.env.GH_TOKEN = gitbox.gitCredential;
   process.env.GITHUB_URL = mockServer.url;
   process.env.ATOM_ACCESS_TOKEN = 'ATOM_TOKEN';
   process.env.ATOM_HOME = tempy.directory();
@@ -86,11 +85,6 @@ test.serial('Initial and minor releases', async t => {
     {},
     {body: {}, method: 'POST', statusCode: 201}
   );
-  let getRefMock = await mockServer.mock(
-    `/repos/${owner}/${packageName}/git/refs/tags/v${version}`,
-    {},
-    {body: {}, statusCode: 200, method: 'GET'}
-  );
   let createReleaseMock = await mockServer.mock(
     `/repos/${owner}/${packageName}/releases`,
     {body: {tag_name: `v${version}`, target_commitish: 'master', name: `v${version}`}},
@@ -105,7 +99,6 @@ test.serial('Initial and minor releases', async t => {
   await mockServer.verify(verifyGitHubMock);
   await mockServer.verify(verifyApmMock);
   await mockServer.verify(getApmVersionMock);
-  await mockServer.verify(getRefMock);
   await mockServer.verify(createReleaseMock);
   t.regex(t.context.logs, /Registering test-release/);
   t.regex(t.context.logs, new RegExp(`Publishing test-release@v${version}`));
@@ -129,11 +122,6 @@ test.serial('Initial and minor releases', async t => {
     {},
     {body: {}, method: 'POST', statusCode: 201}
   );
-  getRefMock = await mockServer.mock(
-    `/repos/${owner}/${packageName}/git/refs/tags/v${version}`,
-    {},
-    {body: {}, statusCode: 200, method: 'GET'}
-  );
   createReleaseMock = await mockServer.mock(
     `/repos/${owner}/${packageName}/releases`,
     {body: {tag_name: `v${version}`, target_commitish: 'master', name: `v${version}`}},
@@ -148,7 +136,6 @@ test.serial('Initial and minor releases', async t => {
   await mockServer.verify(verifyGitHubMock);
   await mockServer.verify(verifyApmMock);
   await mockServer.verify(getApmVersionMock);
-  await mockServer.verify(getRefMock);
   await mockServer.verify(createReleaseMock);
   t.regex(t.context.logs, /Registering test-release/);
   t.regex(t.context.logs, new RegExp(`Publishing test-release@v${version}`));
@@ -164,8 +151,7 @@ test.serial('Throw error if "ATOM_ACCESS_TOKEN" is not set', async t => {
   const packageName = 'missing-token';
   const branch = 'master';
   const {repositoryUrl} = await gitbox.createRepo(packageName, branch);
-  process.env.GIT_CREDENTIALS = gitbox.gitCredential;
-  process.env.GH_TOKEN = 'github_token';
+  process.env.GH_TOKEN = gitbox.gitCredential;
   process.env.GITHUB_URL = mockServer.url;
   process.env.ATOM_HOME = tempy.directory();
   process.env.ATOM_API_URL = mockServer.url;
@@ -186,8 +172,7 @@ test.serial('Throw error if "apm" is not installed', async t => {
   const packageName = 'missing-apm';
   const branch = 'master';
   const {repositoryUrl} = await gitbox.createRepo(packageName, branch);
-  process.env.GIT_CREDENTIALS = gitbox.gitCredential;
-  process.env.GH_TOKEN = 'github_token';
+  process.env.GH_TOKEN = gitbox.gitCredential;
   process.env.GITHUB_URL = mockServer.url;
   process.env.ATOM_HOME = tempy.directory();
   process.env.ATOM_API_URL = mockServer.url;
