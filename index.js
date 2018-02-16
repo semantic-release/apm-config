@@ -22,7 +22,7 @@ module.exports = {
     '@semantic-release/changelog',
     {path: '@semantic-release/npm', npmPublish: false},
     {path: '@semantic-release/git', message: `chore(release): \${nextRelease.version} [skip ci]`},
-    {path: '@semantic-release/exec', cmd: `apm publish --tag \${nextRelease.gitTag}`},
+    {path: '@semantic-release/exec', cmd: `apm publish --tag \${nextRelease.gitTag} 1>&2`},
     '@semantic-release/github',
   ],
 };
