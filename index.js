@@ -18,10 +18,12 @@ module.exports = {
     '@semantic-release/git',
     '@semantic-release/github',
   ],
-  publish: [
+  prepare: [
     '@semantic-release/changelog',
     {path: '@semantic-release/npm', npmPublish: false},
     {path: '@semantic-release/git', message: `chore(release): \${nextRelease.version} [skip ci]`},
+  ],
+  publish: [
     {path: '@semantic-release/exec', cmd: `apm publish --tag \${nextRelease.gitTag} 1>&2`},
     '@semantic-release/github',
   ],
