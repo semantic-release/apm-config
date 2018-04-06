@@ -134,6 +134,9 @@ test.serial('Initial and minor releases', async t => {
   t.is(commit.gitTags, `(HEAD -> master, tag: v${version})`);
 
   /* Minor release */
+  t.log('Commit a feature');
+  await execa('git', ['commit', '-m', 'feat: other feature', '--allow-empty', '--no-gpg-sign']);
+  [commit] = await gitGetCommit();
   version = '1.1.0';
   verifyGitHubMock = await mockServer.mock(
     `/repos/${owner}/${packageName}`,
@@ -154,7 +157,12 @@ test.serial('Initial and minor releases', async t => {
   searchPRsMock = await mockServer.mock(
     '/search/issues',
     {queryStringParameters: {q: `${escape(`repo:${owner}/${packageName}`)}+${escape('type:pr')}+${commit.hash}`}},
-    {body: {items: [{number: 1, pull_request: {}}]}, method: 'GET'}
+    {body: {items: [{number: 1, pull_request: {}, state: 'closed'}]}, method: 'GET'}
+  );
+  const getPRsMock = await mockServer.mock(
+    `/repos/${owner}/${packageName}/pulls/1/commits`,
+    {},
+    {body: [{sha: commit.hash}], method: 'GET'}
   );
   const addCommentMock = await mockServer.mock(
     `/repos/${owner}/${packageName}/issues/1/comments`,
@@ -173,9 +181,6 @@ test.serial('Initial and minor releases', async t => {
     {body: {items: []}, method: 'GET'}
   );
 
-  t.log('Commit a feature');
-  await execa('git', ['commit', '-m', 'feat: other feature', '--allow-empty', '--no-gpg-sign']);
-
   t.log('Minor release');
   await semanticRelease({extends: apmConfig});
 
@@ -184,6 +189,7 @@ test.serial('Initial and minor releases', async t => {
   await mockServer.verify(getApmVersionMock);
   await mockServer.verify(createReleaseMock);
   await mockServer.verify(searchPRsMock);
+  await mockServer.verify(getPRsMock);
   await mockServer.verify(addCommentMock);
   await mockServer.verify(searchIssuesMock);
 
