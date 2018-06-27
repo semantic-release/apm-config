@@ -19,7 +19,7 @@
     "@semantic-release/changelog": "^2.0.0",
     "@semantic-release/error": "^2.1.0",
     "@semantic-release/exec": "^2.2.0",
-    "@semantic-release/git": "^4.0.0",
+    "@semantic-release/git": "^5.0.0",
     "@semantic-release/github": "^4.2.11",
     "@semantic-release/npm": "^3.2.0",
     "execa": "^0.10.0"
