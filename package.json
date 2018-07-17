@@ -21,7 +21,7 @@
     "@semantic-release/exec": "^2.2.0",
     "@semantic-release/git": "^6.0.1",
     "@semantic-release/github": "^4.2.11",
-    "@semantic-release/npm": "^3.2.0",
+    "@semantic-release/npm": "^4.0.0",
     "execa": "^0.10.0"
   },
   "devDependencies": {
