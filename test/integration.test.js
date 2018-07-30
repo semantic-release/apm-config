@@ -126,7 +126,7 @@ test.serial('Initial and minor releases', async t => {
   await mockServer.verify(searchIssuesMock);
   t.regex(t.context.error, /Registering test-release/);
   t.regex(t.context.error, new RegExp(`Publishing test-release@v${version}`));
-  t.regex(t.context.logs, new RegExp(`Published release: 1.0.0`));
+  t.regex(t.context.logs, new RegExp(`Published GitHub release: release-url/${version}`));
   t.is((await readJson('./package.json')).version, version);
   t.deepEqual(await gitCommitedFiles(), ['CHANGELOG.md', 'package.json']);
   let [commit] = await gitGetCommit();
@@ -195,7 +195,7 @@ test.serial('Initial and minor releases', async t => {
 
   t.regex(t.context.error, /Registering test-release/);
   t.regex(t.context.error, new RegExp(`Publishing test-release@v${version}`));
-  t.regex(t.context.logs, new RegExp(`Published release: 1.0.0`));
+  t.regex(t.context.logs, new RegExp(`Published GitHub release: release-url/${version}`));
   t.is((await readJson('./package.json')).version, version);
   t.deepEqual(await gitCommitedFiles(), ['CHANGELOG.md', 'package.json']);
   [commit] = await gitGetCommit();
