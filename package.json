@@ -21,7 +21,7 @@
     "@semantic-release/exec": "^3.0.1",
     "@semantic-release/git": "^7.0.0",
     "@semantic-release/github": "^5.0.0",
-    "@semantic-release/npm": "^4.0.0",
+    "@semantic-release/npm": "^5.0.1",
     "execa": "^0.10.0"
   },
   "devDependencies": {
@@ -75,7 +75,7 @@
     "all": true
   },
   "peerDependencies": {
-    "semantic-release": ">=15.0.0 <16.0.0"
+    "semantic-release": ">=15.9.0 <16.0.0"
   },
   "prettier": {
     "printWidth": 120,
