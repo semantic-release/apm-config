@@ -85,6 +85,11 @@ test.serial('Initial and minor releases', async t => {
     {},
     {body: {permissions: {push: true}}, method: 'GET'}
   );
+  let getRepoMock = await mockServer.mock(
+    `/repos/${owner}/${packageName}`,
+    {},
+    {body: {full_name: `${owner}/${packageName}`}, method: 'GET'}
+  );
   let verifyApmMock = await mockServer.mock('/packages', {}, {body: {}, method: 'POST', statusCode: 201});
   let getApmVersionMock = await mockServer.mock(
     `/packages/${packageName}/versions`,
@@ -120,6 +125,7 @@ test.serial('Initial and minor releases', async t => {
   await semanticRelease({extends: apmConfig});
 
   await mockServer.verify(verifyGitHubMock);
+  await mockServer.verify(getRepoMock);
   await mockServer.verify(verifyApmMock);
   await mockServer.verify(getApmVersionMock);
   await mockServer.verify(createReleaseMock);
@@ -142,6 +148,11 @@ test.serial('Initial and minor releases', async t => {
     `/repos/${owner}/${packageName}`,
     {},
     {body: {permissions: {push: true}}, method: 'GET'}
+  );
+  getRepoMock = await mockServer.mock(
+    `/repos/${owner}/${packageName}`,
+    {},
+    {body: {full_name: `${owner}/${packageName}`}, method: 'GET'}
   );
   verifyApmMock = await mockServer.mock('/packages', {}, {body: {}, method: 'POST', statusCode: 201});
   getApmVersionMock = await mockServer.mock(
@@ -186,6 +197,7 @@ test.serial('Initial and minor releases', async t => {
 
   await mockServer.verify(verifyGitHubMock);
   await mockServer.verify(verifyApmMock);
+  await mockServer.verify(getRepoMock);
   await mockServer.verify(getApmVersionMock);
   await mockServer.verify(createReleaseMock);
   await mockServer.verify(searchPRsMock);
