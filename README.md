@@ -12,12 +12,11 @@
 
 This shareable configuration use the following plugins:
 - [`@semantic-release/commit-analyzer`](https://github.com/semantic-release/commit-analyzer)
-- [`@semantic-release/git`](https://github.com/semantic-release/git)
 - [`@semantic-release/release-notes-generator`](https://github.com/semantic-release/release-notes-generator)
-- [`@semantic-release/npm`](https://github.com/semantic-release/npm)
-- [`@semantic-release/exec`](https://github.com/semantic-release/exec)
-- [`@semantic-release/changelog`](https://github.com/semantic-release/changelog)
 - [`@semantic-release/github`](https://github.com/semantic-release/github)
+- [`@semantic-release/changelog`](https://github.com/semantic-release/changelog)
+- [`@semantic-release/apm`](https://github.com/semantic-release/apm)
+- [`@semantic-release/git`](https://github.com/semantic-release/git)
 
 ## Install
 
