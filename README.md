@@ -1,6 +1,6 @@
 # @semantic-release/apm-config
 
-[**semantic-release**](https://github.com/semantic-release/semantic-release) shareable config to publish [Atom](https://www.atom.io) packages with with [apm](https://github.com/atom/apm).
+[**semantic-release**](https://github.com/semantic-release/semantic-release) shareable config to publish [Atom](https://www.atom.io) packages with [apm](https://github.com/atom/apm).
 
 [![Travis](https://img.shields.io/travis/semantic-release/apm-config.svg)](https://travis-ci.org/semantic-release/apm-config)
 [![Greenkeeper badge](https://badges.greenkeeper.io/semantic-release/apm-config.svg)](https://greenkeeper.io/)

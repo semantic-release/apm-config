@@ -1,6 +1,6 @@
 {
   "name": "@semantic-release/apm-config",
-  "description": "semantic-release shareable config to publish Atom packages with with apm",
+  "description": "semantic-release shareable config to publish Atom packages with apm",
   "version": "0.0.0-development",
   "author": "Pierre Vanduynslager (https://github.com/pvdlg)",
   "bugs": {
