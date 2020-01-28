@@ -11,7 +11,7 @@
     "Gregor Martynus (https://twitter.com/gr2m)"
   ],
   "dependencies": {
-    "@semantic-release/apm": "^2.0.0",
+    "@semantic-release/apm": "^3.0.0",
     "@semantic-release/changelog": "^4.0.0",
     "@semantic-release/commit-analyzer": "^7.0.0",
     "@semantic-release/git": "^8.0.0",
