@@ -16,7 +16,7 @@
     "@semantic-release/commit-analyzer": "^7.0.0",
     "@semantic-release/git": "^8.0.0",
     "@semantic-release/github": "^6.0.0",
-    "@semantic-release/release-notes-generator": "^7.1.4"
+    "@semantic-release/release-notes-generator": "^9.0.0"
   },
   "devDependencies": {
     "semantic-release": "^17.0.0",
