@@ -57,7 +57,8 @@
   },
   "scripts": {
     "semantic-release": "semantic-release",
-    "test": "xo"
+    "test": "xo",
+    "lint": "xo"
   },
   "xo": {
     "prettier": true,
