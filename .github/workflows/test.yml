@@ -10,12 +10,20 @@ name: Test
       - synchronize
 jobs:
   test:
+    strategy:
+      matrix:
+        node-version:
+          - '14.17'
+          - 16
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
         with:
           cache: npm
-          node-version: 16
+          node-version: ${{ matrix.node-version }}
       - run: npm ci
+      - name: Ensure dependencies are compatible with the version of node
+        run: npx ls-engines
       - run: npm test
