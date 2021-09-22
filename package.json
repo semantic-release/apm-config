@@ -12,7 +12,7 @@
   ],
   "dependencies": {
     "@semantic-release/apm": "^4.0.0",
-    "@semantic-release/changelog": "^5.0.0",
+    "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/commit-analyzer": "^9.0.0",
     "@semantic-release/git": "^10.0.0",
     "@semantic-release/github": "^8.0.0",
