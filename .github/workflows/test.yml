@@ -24,6 +24,7 @@ jobs:
         with:
           cache: npm
           node-version: ${{ matrix.node-version }}
+          check-latest: true
       - run: npm ci
       # waiting on https://github.com/ljharb/ls-engines/pull/23 to be fixed
       # - name: Ensure dependencies are compatible with the version of node
