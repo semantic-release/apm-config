@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "semantic-release": "19.0.2",
-    "xo": "0.48.0"
+    "xo": "0.49.0"
   },
   "engines": {
     "node": ">=14.17"
